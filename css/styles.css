@@ -97,6 +97,9 @@ img {
 }
 
 .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-primary);
@@ -106,6 +109,10 @@ img {
     height: 64px;
     width: auto;
     max-width: 300px;
+}
+
+.logo-text {
+    color: var(--color-primary);
 }
 
 .nav-menu {
