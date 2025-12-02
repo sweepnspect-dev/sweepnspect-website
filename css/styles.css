@@ -298,46 +298,57 @@ img {
 /* ==========================================
    Phone Mockup & Demo
    ========================================== */
+/* Phone Mockup Container - provides perspective */
 .phone-mockup {
+    perspective: 1000px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
+/* Phone Frame - white with 3D tilt */
 .phone-frame {
     width: 280px;
     height: 580px;
-    background: #ffffff;
-    border-radius: 40px;
-    padding: 12px;
-    box-shadow:
-        0 25px 50px -12px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    border-radius: 45px;
+    padding: 10px;
     position: relative;
+
+    /* 3D tilt - rotated right */
+    transform: rotateY(-8deg) rotateX(3deg);
+    transform-style: preserve-3d;
+
+    /* Realistic layered shadows */
+    box-shadow:
+        -20px 25px 60px rgba(0, 0, 0, 0.35),
+        0 15px 40px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8),
+        0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
+/* Notch at top */
 .phone-notch {
-    width: 120px;
-    height: 24px;
-    background: #ffffff;
-    border-radius: 0 0 16px 16px;
+    width: 100px;
+    height: 28px;
+    background: #1a1a2e;
+    border-radius: 0 0 18px 18px;
     position: absolute;
-    top: 12px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
 }
 
+/* Screen area */
 .phone-screen {
     width: 100%;
     height: 100%;
     background: #f8fafc;
-    border-radius: 32px;
+    border-radius: 38px;
     overflow: hidden;
     position: relative;
 }
 
+/* Demo screen content */
 .demo-screens {
     width: 100%;
     height: 100%;
@@ -350,22 +361,23 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 40px 16px 16px;
+    padding: 45px 16px 16px;
     opacity: 0;
     transition: opacity 0.5s ease;
     display: flex;
     flex-direction: column;
+    background: #f8fafc;
 }
 
 .demo-screen.active {
     opacity: 1;
 }
 
-/* Demo UI Components */
+/* Demo header */
 .demo-header {
     color: #0f172a;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 700;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -373,41 +385,91 @@ img {
 }
 
 .demo-label {
-    color: var(--color-text-muted);
-    font-size: 11px;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 12px;
 }
 
+/* Demo cards - white with left color border */
 .demo-card {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 12px;
-    margin-bottom: 8px;
-    border-left: 3px solid #ea580c;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-left: 4px solid #ea580c;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.demo-card:nth-child(3) {
+    border-left-color: #22c55e;
+}
+
+.demo-card:nth-child(4) {
+    border-left-color: #3b82f6;
 }
 
 .demo-card-title {
     color: #0f172a;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .demo-card-subtitle {
     color: #64748b;
-    font-size: 11px;
-    margin-top: 2px;
+    font-size: 12px;
+    margin-top: 3px;
 }
 
+/* Progress bar */
+.demo-progress {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.demo-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22c55e 0%, #ea580c 100%);
+    border-radius: 3px;
+    width: 60%;
+}
+
+/* Check items */
+.demo-check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #0f172a;
+    font-size: 13px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.demo-check-done span {
+    color: #22c55e;
+}
+
+.demo-check-pending {
+    color: #94a3b8;
+}
+
+.demo-check-pending span {
+    color: #cbd5e1;
+}
+
+/* Buttons inside demo */
 .demo-btn {
     background: #ea580c;
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 13px;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
     font-weight: 600;
     text-align: center;
     margin-top: auto;
@@ -415,9 +477,9 @@ img {
 
 .demo-btn-outline {
     background: transparent;
-    border: 1px solid #ea580c;
+    border: 2px solid #ea580c;
     color: #ea580c;
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 .demo-detail-group {
@@ -432,72 +494,41 @@ img {
 }
 
 .demo-detail-value {
-    color: white;
+    color: #0f172a;
     font-size: 14px;
     font-weight: 500;
 }
 
-.demo-check-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: white;
-    font-size: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid #1e293b;
-}
-
-.demo-check-done {
-    color: #22c55e;
-}
-
-.demo-check-pending {
-    color: #64748b;
-}
-
-.demo-progress {
-    height: 4px;
-    background: #1e293b;
-    border-radius: 2px;
-    margin-bottom: 16px;
-}
-
-.demo-progress-fill {
-    height: 100%;
-    background: #ea580c;
-    border-radius: 2px;
-    width: 60%;
-}
-
+/* Success screen */
 .demo-success-icon {
-    font-size: 48px;
+    font-size: 56px;
     text-align: center;
-    margin: 20px 0;
+    margin: 30px 0 10px;
 }
 
 .demo-success-title {
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
     text-align: center;
-    margin-bottom: 4px;
 }
 
 .demo-success-subtitle {
-    color: #94a3b8;
-    font-size: 13px;
+    font-size: 14px;
+    color: #64748b;
     text-align: center;
     margin-bottom: 20px;
 }
 
 .demo-pdf-preview {
-    background: #1e293b;
-    border-radius: 8px;
+    background: #ffffff;
+    border-radius: 10px;
     padding: 16px;
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .demo-pdf-icon {
@@ -505,23 +536,27 @@ img {
 }
 
 .demo-pdf-text {
-    color: white;
-    font-size: 12px;
+    font-size: 13px;
+    color: #0f172a;
 }
 
+/* Bottom nav */
 .demo-bottom-nav {
     display: flex;
     justify-content: space-around;
-    padding: 12px 0;
-    border-top: 1px solid #1e293b;
+    padding: 14px 0;
+    border-top: 1px solid #e2e8f0;
     margin-top: auto;
     font-size: 20px;
+    background: #ffffff;
 }
 
+/* Indicators */
 .demo-indicators {
     display: flex;
     gap: 8px;
-    margin-top: 16px;
+    margin-top: 20px;
+    justify-content: center;
 }
 
 .indicator {
@@ -529,11 +564,13 @@ img {
     height: 8px;
     border-radius: 50%;
     background: #334155;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
 .indicator.active {
     background: #ea580c;
+    width: 24px;
+    border-radius: 4px;
 }
 
 /* ==========================================
@@ -813,6 +850,7 @@ img {
     .phone-frame {
         width: 240px;
         height: 500px;
+        transform: rotateY(0deg) rotateX(0deg);
     }
 
     .pricing-card-featured {
