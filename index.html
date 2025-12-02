@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SweepNspect - The Professional Chimney Inspection App. Built by industry veterans, NFPA 211 compliant, Android-native.">
+    <!-- SEO -->
+    <meta name="description" content="Professional chimney inspection app built by industry veterans. NFPA 211 compliant, offline-first, Android and iOS. Generate PDF reports instantly in the field.">
+    <meta name="keywords" content="chimney inspection app, NFPA 211, chimney sweep software, inspection report, chimney professional, field service app">
+    <meta name="author" content="SweepNspect">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sweepnspect.com/">
+    <meta property="og:title" content="SweepNspect - Professional Chimney Inspection App">
+    <meta property="og:description" content="Built by industry veterans with 20+ years experience. NFPA 211 compliant, offline-first, instant PDF reports.">
+    <meta property="og:image" content="https://sweepnspect.com/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SweepNspect - Professional Chimney Inspection App">
+    <meta name="twitter:description" content="Built by industry veterans with 20+ years experience. NFPA 211 compliant, offline-first, instant PDF reports.">
+    <meta name="twitter:image" content="https://sweepnspect.com/images/og-image.png">
+
     <title>SweepNspect - Professional Chimney Inspection App</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -41,7 +58,7 @@
                     NFPA 211 compliant, Android-native, and optimized for real-world field work.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary btn-lg">Get for Android</a>
+                    <a href="coming-soon.html" class="btn btn-primary btn-lg">Get the App</a>
                     <a href="#features" class="btn btn-outline btn-lg">See Features</a>
                 </div>
             </div>
@@ -287,13 +304,22 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Get in Touch</h2>
             <p class="section-subtitle">Questions? We'd love to hear from you.</p>
-            <div class="contact-cta">
-                <a href="mailto:info@sweepnspect.com" class="btn btn-primary btn-lg">Contact Us</a>
-            </div>
+
+            <form class="contact-form" action="https://formsubmit.co/sweepnspect@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="SweepNspect Website Contact">
+                <input type="hidden" name="_next" value="https://sweepnspect-dev.github.io/sweepnspect-website/thank-you.html">
+                <input type="hidden" name="_captcha" value="true">
+                <input type="text" name="_honey" style="display:none">
+
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
         </div>
     </section>
 

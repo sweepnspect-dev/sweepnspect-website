@@ -803,3 +803,202 @@ img {
         padding: var(--spacing-md);
     }
 }
+
+/* ==========================================
+   Coming Soon Page
+   ========================================== */
+.coming-soon-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    background: #0f172a;
+}
+
+.coming-soon-logo {
+    height: 60px;
+    margin-bottom: 32px;
+}
+
+.coming-soon-page h1 {
+    color: #ea580c;
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.coming-soon-page > p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    max-width: 400px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.notify-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.notify-form input[type="email"] {
+    padding: 14px 20px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: white;
+    font-size: 16px;
+    width: 280px;
+}
+
+.notify-form input[type="email"]::placeholder {
+    color: #64748b;
+}
+
+.notify-form button {
+    padding: 14px 32px;
+    border-radius: 8px;
+    border: none;
+    background: #ea580c;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.notify-form button:hover {
+    background: #dc2626;
+}
+
+.store-badges {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 48px;
+}
+
+.badge-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 40px;
+    background: #1e293b;
+    border-radius: 12px;
+    border: 1px solid #334155;
+}
+
+.badge-placeholder span:first-child {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.badge-status {
+    color: #ea580c;
+    font-size: 0.85rem;
+    margin-top: 6px;
+}
+
+.back-link {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #ea580c;
+}
+
+/* ==========================================
+   Thank You Page
+   ========================================== */
+.thank-you-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    background: #0f172a;
+}
+
+.thank-you-icon {
+    width: 80px;
+    height: 80px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    margin-bottom: 24px;
+}
+
+.thank-you-page h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.thank-you-page p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+}
+
+/* ==========================================
+   Contact Form
+   ========================================== */
+.contact-form {
+    max-width: 500px;
+    margin: 32px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 14px 20px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: white;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #64748b;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form button {
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: none;
+    background: #ea580c;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.contact-form button:hover {
+    background: #dc2626;
+}
