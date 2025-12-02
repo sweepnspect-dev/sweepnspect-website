@@ -103,8 +103,9 @@ img {
 }
 
 .logo-img {
-    height: 40px;
+    height: 32px;
     width: auto;
+    max-width: 150px;
 }
 
 .nav-menu {
