@@ -102,6 +102,11 @@ img {
     color: var(--color-primary);
 }
 
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
 .nav-menu {
     display: flex;
     align-items: center;
