@@ -103,9 +103,9 @@ img {
 }
 
 .logo-img {
-    height: 32px;
+    height: 64px;
     width: auto;
-    max-width: 150px;
+    max-width: 300px;
 }
 
 .nav-menu {
