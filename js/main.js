@@ -89,4 +89,29 @@
 
     // Initialize
     updateActiveNavLink();
+
+    // Demo screen rotation
+    const demoScreens = document.querySelectorAll('.demo-screen');
+    const indicators = document.querySelectorAll('.indicator');
+    let currentScreen = 0;
+
+    function rotateDemoScreen() {
+        if (demoScreens.length === 0) return;
+
+        // Remove active from current
+        demoScreens[currentScreen].classList.remove('active');
+        indicators[currentScreen].classList.remove('active');
+
+        // Move to next
+        currentScreen = (currentScreen + 1) % demoScreens.length;
+
+        // Add active to new
+        demoScreens[currentScreen].classList.add('active');
+        indicators[currentScreen].classList.add('active');
+    }
+
+    // Rotate every 3 seconds
+    if (demoScreens.length > 0) {
+        setInterval(rotateDemoScreen, 3000);
+    }
 })();
