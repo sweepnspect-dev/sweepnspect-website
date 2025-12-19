@@ -642,24 +642,58 @@ img {
     background-color: var(--color-bg-light);
 }
 
+.pricing .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.pricing .section-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    margin-bottom: 3rem;
+}
+
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-lg);
-    align-items: start;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+@media (max-width: 900px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
 }
 
 .pricing-card {
-    background-color: var(--color-bg);
-    padding: var(--spacing-lg);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
     position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-card-featured {
-    border-color: var(--color-secondary);
-    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(234, 88, 12, 0.3);
+    box-shadow: 0 8px 32px rgba(234, 88, 12, 0.15);
+}
+
+.pricing-card-featured:hover {
+    box-shadow: 0 16px 48px rgba(234, 88, 12, 0.25);
 }
 
 .pricing-badge {
@@ -667,26 +701,29 @@ img {
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--color-secondary);
-    color: var(--color-text);
-    padding: 0.25rem 1rem;
+    background: var(--color-primary, #ea580c);
+    color: white;
+    padding: 0.35rem 1rem;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
 }
 
 .pricing-header {
     text-align: center;
-    padding-bottom: var(--spacing-md);
-    border-bottom: 1px solid var(--color-border);
-    margin-bottom: var(--spacing-md);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .pricing-tier {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: var(--spacing-xs);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.75rem;
 }
 
 .pricing-price {
@@ -697,32 +734,81 @@ img {
 }
 
 .price-amount {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
+    color: white;
+    line-height: 1;
 }
 
 .price-period {
-    color: var(--color-text-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
 }
 
 .pricing-features {
-    margin-bottom: var(--spacing-lg);
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex-grow: 1;
 }
 
 .pricing-features li {
-    padding: var(--spacing-xs) 0;
-    color: var(--color-text-muted);
-    position: relative;
-    padding-left: 1.5rem;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
 }
 
 .pricing-features li::before {
     content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--color-primary);
-    font-weight: 700;
+    color: #4ade80;
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+/* Pricing Card Buttons */
+.pricing-card .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+.pricing-card .btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.pricing-card .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.pricing-card .btn-secondary,
+.pricing-card-featured .btn {
+    background: var(--color-primary, #ea580c);
+    border: 1px solid var(--color-primary, #ea580c);
+    color: white;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.pricing-card .btn-secondary:hover,
+.pricing-card-featured .btn:hover {
+    background: #c2410c;
+    border-color: #c2410c;
+    transform: translateY(-1px);
 }
 
 /* ==========================================
