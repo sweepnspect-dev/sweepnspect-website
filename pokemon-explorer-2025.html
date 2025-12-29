@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Explorer 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--red:#FF5350;--blue:#3B82F6;--yellow:#FFD93D;--green:#6BCB77;--purple:#A855F7;--orange:#FF9F43;--pink:#FF6B9D;--cyan:#00D9FF;--dark:#2D3436}
+        body{font-family:'Nunito',sans-serif;background:linear-gradient(180deg,#0f0c29,#302b63,#24243e);min-height:100vh;color:#fff;overflow-x:hidden}
+        .stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+        .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 3s infinite}
+        @keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
+        header{position:relative;z-index:10;padding:20px;text-align:center;background:linear-gradient(135deg,rgba(255,83,80,.95),rgba(168,85,247,.95));border-bottom:5px solid var(--yellow)}
+        .logo{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,5vw,3rem);text-shadow:3px 3px 0 var(--blue);animation:bounce 2s infinite}
+        .year{background:var(--cyan);color:var(--dark);padding:4px 12px;border-radius:15px;font-size:.9rem;margin-left:10px;font-family:'Fredoka One',cursive}
+        @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+        nav{position:relative;z-index:10;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;padding:15px;background:rgba(0,0,0,.4)}
+        .nav-btn{font-family:'Fredoka One',cursive;font-size:clamp(.7rem,2vw,.95rem);padding:10px 16px;border:none;border-radius:50px;cursor:pointer;transition:all .3s;box-shadow:0 4px 0 rgba(0,0,0,.3)}
+        .nav-btn:hover{transform:translateY(-2px)}.nav-btn.active{outline:3px solid #fff}
+        .nav-btn.red{background:var(--red);color:#fff}.nav-btn.blue{background:var(--blue);color:#fff}
+        .nav-btn.yellow{background:var(--yellow);color:var(--dark)}.nav-btn.green{background:var(--green);color:#fff}
+        .nav-btn.purple{background:var(--purple);color:#fff}.nav-btn.orange{background:var(--orange);color:#fff}
+        .nav-btn.pink{background:var(--pink);color:#fff}.nav-btn.cyan{background:var(--cyan);color:var(--dark)}
+        main{position:relative;z-index:10;max-width:1200px;margin:0 auto;padding:20px 15px}
+        .section{display:none;animation:fadeIn .4s}.section.active{display:block}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+        .title{font-family:'Fredoka One',cursive;font-size:clamp(1.5rem,4vw,2rem);text-align:center;margin-bottom:20px}
+        .card{background:rgba(255,255,255,.1);border-radius:20px;padding:20px;margin-bottom:15px;backdrop-filter:blur(10px);border:2px solid rgba(255,255,255,.15)}
+        .pokemon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+        .poke-card{background:rgba(255,255,255,.15);border-radius:15px;padding:10px;text-align:center;cursor:pointer;transition:all .3s;border:3px solid transparent}
+        .poke-card:hover{transform:translateY(-8px) scale(1.03);border-color:var(--yellow)}
+        .poke-card img{width:70px;height:70px;object-fit:contain}
+        .poke-name{font-family:'Fredoka One',cursive;font-size:.85rem;margin-top:5px}
+        .type{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.6rem;font-weight:700;text-transform:uppercase;margin-top:3px}
+        .type-fire{background:#F08030}.type-water{background:#6890F0}.type-grass{background:#78C850}
+        .type-electric{background:#F8D030;color:#333}.type-psychic{background:#F85888}.type-ice{background:#98D8D8;color:#333}
+        .type-dragon{background:#7038F8}.type-dark{background:#705848}.type-fairy{background:#EE99AC}
+        .type-normal{background:#A8A878}.type-fighting{background:#C03028}.type-ghost{background:#705898}
+        .search{width:100%;max-width:300px;padding:12px 20px;font-size:1rem;border-radius:50px;border:3px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;margin-bottom:15px}
+        .search::placeholder{color:rgba(255,255,255,.5)}.search:focus{outline:none;border-color:var(--yellow)}
+        .score{font-family:'Fredoka One',cursive;font-size:1.1rem;padding:10px 20px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50px;display:inline-block;margin:8px 5px}
+        .btn{font-family:'Fredoka One',cursive;font-size:1rem;padding:12px 25px;border:none;border-radius:50px;cursor:pointer;background:linear-gradient(135deg,var(--yellow),var(--orange));color:var(--dark);box-shadow:0 5px 0 #cc7a00;margin:10px 5px;transition:all .3s}
+        .btn:hover{transform:translateY(-3px)}.btn:active{transform:translateY(2px);box-shadow:0 2px 0 #cc7a00}
+        .btn.alt{background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 5px 0 #7c3aed}
+        .quiz-img{width:150px;height:150px;margin:15px auto;object-fit:contain;display:block}
+        .quiz-img.hidden{filter:brightness(0)}
+        .quiz-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:400px;margin:15px auto}
+        .quiz-opt{font-family:'Fredoka One',cursive;font-size:.95rem;padding:14px;border:none;border-radius:15px;cursor:pointer;background:rgba(255,255,255,.15);color:#fff;border:3px solid rgba(255,255,255,.2);transition:all .3s}
+        .quiz-opt:hover:not(:disabled){transform:scale(1.03);border-color:var(--yellow)}
+        .quiz-opt.correct{background:var(--green)!important}.quiz-opt.wrong{background:var(--red)!important;animation:shake .5s}
+        @keyframes shake{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-8px)}50%{transform:translateX(8px)}}
+        .catch-area{position:relative;height:350px;background:linear-gradient(180deg,#87CEEB,#90EE90 70%,#228B22);border-radius:20px;overflow:hidden;cursor:crosshair}
+        .wild{position:absolute;width:55px;height:55px;object-fit:contain;cursor:pointer;transition:transform .1s;filter:drop-shadow(0 3px 6px rgba(0,0,0,.3))}
+        .wild:hover{transform:scale(1.2)}.wild.rare{animation:glow 1s infinite alternate}
+        @keyframes glow{from{filter:drop-shadow(0 0 8px gold)}to{filter:drop-shadow(0 0 20px gold)}}
+        .mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:380px;margin:15px auto}
+        .mem-card{aspect-ratio:1;background:linear-gradient(145deg,var(--blue),var(--purple));border-radius:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;border:3px solid rgba(255,255,255,.2)}
+        .mem-card:hover:not(.flip):not(.match){transform:scale(1.05);border-color:var(--yellow)}
+        .mem-card.flip{background:#fff}.mem-card.match{background:var(--green)}
+        .mem-card img{width:55%;height:55%;object-fit:contain;display:none}
+        .mem-card.flip img,.mem-card.match img{display:block}
+        .mem-card .back{font-size:1.4rem}.mem-card.flip .back,.mem-card.match .back{display:none}
+        .fuse-slots{display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;margin:20px 0}
+        .fuse-slot{width:130px;height:130px;background:rgba(255,255,255,.1);border-radius:20px;border:3px dashed rgba(255,255,255,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .3s}
+        .fuse-slot:hover{border-color:var(--yellow);transform:scale(1.05)}.fuse-slot.filled{border-style:solid;border-color:var(--green)}
+        .fuse-slot img{width:75px;height:75px;object-fit:contain}
+        .fuse-plus{font-family:'Fredoka One',cursive;font-size:2.2rem;color:var(--yellow)}
+        .fuse-result{padding:20px;background:linear-gradient(135deg,rgba(168,85,247,.2),rgba(255,83,80,.2));border-radius:20px;margin-top:20px;text-align:center}
+        .fuse-result h3{font-family:'Fredoka One',cursive;font-size:1.6rem;background:linear-gradient(135deg,var(--yellow),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .ai-img{width:220px;height:220px;margin:15px auto;border-radius:20px;background:rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;position:relative;border:4px solid var(--purple)}
+        .ai-img canvas{border-radius:15px}
+        .ai-badge{position:absolute;top:8px;right:8px;background:var(--cyan);padding:3px 10px;border-radius:12px;font-family:'Fredoka One',cursive;font-size:.65rem;color:var(--dark)}
+        .spin{width:45px;height:45px;border:4px solid rgba(255,255,255,.2);border-top-color:var(--cyan);border-radius:50%;animation:spin 1s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+        .stat{background:rgba(255,255,255,.1);border-radius:10px;padding:8px;text-align:center}
+        .stat-label{font-size:.65rem;color:rgba(255,255,255,.7);text-transform:uppercase}
+        .stat-val{font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--cyan)}
+        .stat-bar{height:6px;background:rgba(255,255,255,.15);border-radius:4px;margin-top:4px;overflow:hidden}
+        .stat-fill{height:100%;border-radius:4px}
+        .battle-arena{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;padding:20px;background:linear-gradient(135deg,rgba(192,48,48,.2),rgba(59,130,246,.2));border-radius:20px;margin:15px 0}
+        .battle-poke img{width:110px;height:110px;object-fit:contain}
+        .battle-poke.win img{animation:dance .5s infinite}
+        @keyframes dance{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+        .battle-poke.lose img{filter:grayscale(80%);opacity:.5}
+        .type-btns{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:15px}
+        .type-btn{font-family:'Fredoka One',cursive;font-size:.85rem;padding:10px 18px;border:none;border-radius:18px;cursor:pointer;color:#fff;transition:all .3s}
+        .type-btn:hover{transform:translateY(-3px)}
+        .speed-input{font-family:'Fredoka One',cursive;font-size:1.4rem;padding:12px 20px;border-radius:15px;border:3px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;text-align:center;width:100%;max-width:280px}
+        .speed-input:focus{outline:none;border-color:var(--yellow)}
+        .speed-input.ok{border-color:var(--green);background:rgba(107,203,119,.2)}
+        .speed-input.bad{border-color:var(--red);animation:shake .5s}
+        .timer{height:10px;background:rgba(255,255,255,.2);border-radius:8px;overflow:hidden;margin:15px auto;max-width:300px}
+        .timer-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--yellow),var(--red));transition:width .1s linear}
+        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:15px}
+        .modal.active{display:flex}
+        .modal-box{background:linear-gradient(145deg,#2d3436,#1a1a2e);border-radius:20px;padding:20px;max-width:400px;width:100%;text-align:center;position:relative;border:4px solid var(--yellow);animation:pop .3s;max-height:80vh;overflow-y:auto}
+        @keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+        .close{position:absolute;top:10px;right:15px;font-size:1.6rem;cursor:pointer;color:#fff}.close:hover{color:var(--red)}
+        .popup{position:fixed;top:15px;right:15px;background:linear-gradient(135deg,var(--yellow),var(--orange));color:var(--dark);padding:12px 18px;border-radius:15px;font-family:'Fredoka One',cursive;font-size:.95rem;z-index:9999;animation:slideIn .4s,slideOut .4s 2.5s forwards}
+        @keyframes slideIn{from{transform:translateX(120%)}to{transform:translateX(0)}}
+        @keyframes slideOut{from{transform:translateX(0)}to{transform:translateX(120%)}}
+        .confetti{position:fixed;width:10px;height:10px;pointer-events:none;z-index:9999;animation:fall 2.5s forwards}
+        @keyframes fall{0%{transform:translateY(-50px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+        .evo-display{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:20px;background:rgba(103,126,234,.2);border-radius:20px;margin:15px 0}
+        .evo-poke{text-align:center;cursor:pointer;transition:transform .3s}.evo-poke:hover{transform:scale(1.1)}
+        .evo-poke img{width:80px;height:80px;object-fit:contain}
+        .evo-arrow{font-size:1.8rem;color:var(--yellow);animation:pulse 1s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+        .evo-branch{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;max-width:250px}
+        .select{padding:10px 18px;font-size:.95rem;border-radius:12px;border:3px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;cursor:pointer}
+        .select option{background:#2d3436}
+        @media(max-width:600px){.pokemon-grid{grid-template-columns:repeat(2,1fr)}.quiz-opts{grid-template-columns:1fr}.mem-grid{grid-template-columns:repeat(3,1fr)}.fuse-slot{width:100px;height:100px}.stats{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<header><span class="logo">Pokémon Explorer</span><span class="year">2025</span></header>
+<nav>
+    <button class="nav-btn red active" onclick="go('dex')">📖 Pokédex</button>
+    <button class="nav-btn blue" onclick="go('evo')">🔄 Evolve</button>
+    <button class="nav-btn yellow" onclick="go('quiz')">❓ Quiz</button>
+    <button class="nav-btn green" onclick="go('catch')">🎯 Catch</button>
+    <button class="nav-btn purple" onclick="go('mem')">🧠 Memory</button>
+    <button class="nav-btn orange" onclick="go('fuse')">🧬 AI Fusion</button>
+    <button class="nav-btn pink" onclick="go('battle')">⚔️ Type Battle</button>
+    <button class="nav-btn cyan" onclick="go('speed')">⌨️ Speed Type</button>
+</nav>
+<main>
+    <section id="dex" class="section active">
+        <h2 class="title">📖 Pokédex</h2>
+        <div class="card"><div style="text-align:center"><input type="text" class="search" id="searchIn" placeholder="🔍 Search..." oninput="filter()"></div><div class="pokemon-grid" id="grid"></div></div>
+    </section>
+    <section id="evo" class="section">
+        <h2 class="title">🔄 Evolution Explorer</h2>
+        <div class="card"><div style="text-align:center"><select class="select" id="evoSel" onchange="showEvo()"><option value="">Choose a family...</option><option value="bulbasaur">🌱 Bulbasaur</option><option value="charmander">🔥 Charmander</option><option value="squirtle">💧 Squirtle</option><option value="pikachu">⚡ Pikachu</option><option value="eevee">✨ Eevee (8 forms!)</option><option value="magikarp">🐟 Magikarp</option><option value="dratini">🐉 Dratini</option><option value="gastly">👻 Gastly</option><option value="sprigatito">🌿 Sprigatito</option><option value="fuecoco">🔥 Fuecoco</option><option value="quaxly">🦆 Quaxly</option></select></div><div id="evoDisplay"></div></div>
+    </section>
+    <section id="quiz" class="section">
+        <h2 class="title">❓ Who's That Pokémon?</h2>
+        <div class="card" style="text-align:center"><div class="score">Score: <span id="qScore">0</span>/<span id="qTotal">0</span> <span id="streak"></span></div><img id="qImg" class="quiz-img hidden" src=""><div class="quiz-opts" id="qOpts"></div><button class="btn" onclick="startQuiz()">🎮 New Game</button></div>
+    </section>
+    <section id="catch" class="section">
+        <h2 class="title">🎯 Catch Game</h2>
+        <div class="card"><div style="text-align:center"><span class="score">Caught: <span id="cScore">0</span></span><span class="score" style="background:linear-gradient(135deg,#f093fb,#f5576c)">Time: <span id="cTime">30</span>s</span><span class="score" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">Best: <span id="cBest">0</span></span></div><div class="catch-area" id="catchArea" onclick="throwBall(event)"></div><div style="text-align:center"><button class="btn" onclick="startCatch()">🎮 Start!</button></div></div>
+    </section>
+    <section id="mem" class="section">
+        <h2 class="title">🧠 Memory Match</h2>
+        <div class="card"><div style="text-align:center"><span class="score">Moves: <span id="mMoves">0</span></span><span class="score" style="background:linear-gradient(135deg,#11998e,#38ef7d)">Pairs: <span id="mPairs">0</span>/8</span></div><div class="mem-grid" id="memGrid"></div><div style="text-align:center"><button class="btn" onclick="startMem()">🔄 New Game</button></div></div>
+    </section>
+    <section id="fuse" class="section">
+        <h2 class="title">🧬 AI Fusion Lab</h2>
+        <div class="card" style="text-align:center"><p>Create amazing AI-powered Pokémon fusions!</p><div class="fuse-slots"><div class="fuse-slot" id="slot1" onclick="pickFuse(1)"><span style="font-size:1.8rem">❓</span><p style="font-size:.75rem">Choose</p></div><span class="fuse-plus">+</span><div class="fuse-slot" id="slot2" onclick="pickFuse(2)"><span style="font-size:1.8rem">❓</span><p style="font-size:.75rem">Choose</p></div></div><button class="btn" onclick="doFuse()">🧬 FUSE!</button><button class="btn alt" onclick="randFuse()">🎲 Random</button><div id="fuseResult"></div></div>
+    </section>
+    <section id="battle" class="section">
+        <h2 class="title">⚔️ Type Battle</h2>
+        <div class="card"><div style="text-align:center"><span class="score">Wins: <span id="bWins">0</span> | Streak: <span id="bStreak">0</span>🔥</span></div><p style="text-align:center;margin:10px 0">Which type is SUPER EFFECTIVE?</p><div class="battle-arena" id="arena"><div class="battle-poke" id="battlePoke"></div></div><div class="type-btns" id="typeBtns"></div><div style="text-align:center"><button class="btn" onclick="startBattle()">🎮 New Battle</button></div></div>
+    </section>
+    <section id="speed" class="section">
+        <h2 class="title">⌨️ Speed Type</h2>
+        <div class="card" style="text-align:center"><div><span class="score">Score: <span id="sScore">0</span></span><span class="score" style="background:linear-gradient(135deg,#f093fb,#f5576c)">Best: <span id="sBest">0</span></span></div><div class="timer"><div class="timer-fill" id="sFill" style="width:100%"></div></div><div id="speedPoke"><img src="" style="width:120px;height:120px"><p id="hint" style="font-family:'Fredoka One',cursive;font-size:1.2rem;margin-top:10px"></p></div><input type="text" class="speed-input" id="sInput" placeholder="Type the name..." oninput="checkSpeed()" autocomplete="off"><div><button class="btn" onclick="startSpeed()">🎮 Start!</button></div></div>
+    </section>
+</main>
+<div class="modal" id="modal"><div class="modal-box"><span class="close" onclick="closeModal()">×</span><img id="mImg" src="" style="width:120px;height:120px;object-fit:contain"><h3 id="mName" style="font-family:'Fredoka One',cursive;font-size:1.4rem;margin:10px 0"></h3><p id="mType"></p><p id="mDesc" style="font-size:.85rem;margin:10px 0"></p><div class="stats" id="mStats"></div></div></div>
+<div class="modal" id="fuseModal"><div class="modal-box"><span class="close" onclick="closeFuseModal()">×</span><h3 style="font-family:'Fredoka One',cursive;margin-bottom:15px">Choose Pokémon</h3><input type="text" class="search" id="fuseSearch" placeholder="🔍 Search..." oninput="renderFusePicker()" style="max-width:100%"><div class="pokemon-grid" id="fusePicker" style="max-height:250px;overflow-y:auto"></div></div></div>
+<script>
+const P=[
+{id:1,name:"Bulbasaur",type:"grass",desc:"A strange seed was planted on its back at birth.",stats:{hp:45,attack:49,defense:49,speed:45}},
+{id:2,name:"Ivysaur",type:"grass",desc:"The bulb on its back grows by absorbing nutrients.",stats:{hp:60,attack:62,defense:63,speed:60}},
+{id:3,name:"Venusaur",type:"grass",desc:"The plant blooms when absorbing solar energy.",stats:{hp:80,attack:82,defense:83,speed:80}},
+{id:4,name:"Charmander",type:"fire",desc:"The flame on its tail shows its life force.",stats:{hp:39,attack:52,defense:43,speed:65}},
+{id:5,name:"Charmeleon",type:"fire",desc:"It whips its fiery tail and slashes with claws.",stats:{hp:58,attack:64,defense:58,speed:80}},
+{id:6,name:"Charizard",type:"fire",desc:"It spits fire hot enough to melt boulders.",stats:{hp:78,attack:84,defense:78,speed:100}},
+{id:7,name:"Squirtle",type:"water",desc:"Its shell hardens into a powerful shield.",stats:{hp:44,attack:48,defense:65,speed:43}},
+{id:8,name:"Wartortle",type:"water",desc:"A symbol of longevity with a furry tail.",stats:{hp:59,attack:63,defense:80,speed:58}},
+{id:9,name:"Blastoise",type:"water",desc:"Water spouts from the cannons on its shell.",stats:{hp:79,attack:83,defense:100,speed:78}},
+{id:25,name:"Pikachu",type:"electric",desc:"Its electricity can cause lightning storms.",stats:{hp:35,attack:55,defense:40,speed:90}},
+{id:26,name:"Raichu",type:"electric",desc:"Its tail serves as a ground for high voltage.",stats:{hp:60,attack:90,defense:55,speed:110}},
+{id:172,name:"Pichu",type:"electric",desc:"Not yet skilled at storing electricity.",stats:{hp:20,attack:40,defense:15,speed:60}},
+{id:133,name:"Eevee",type:"normal",desc:"Its unstable genetic code allows many evolutions.",stats:{hp:55,attack:55,defense:50,speed:55}},
+{id:134,name:"Vaporeon",type:"water",desc:"Can melt invisibly in water.",stats:{hp:130,attack:65,defense:60,speed:65}},
+{id:135,name:"Jolteon",type:"electric",desc:"Blasts 10,000-volt lightning bolts.",stats:{hp:65,attack:65,defense:60,speed:130}},
+{id:136,name:"Flareon",type:"fire",desc:"Body temperature tops 1,650°F before battle.",stats:{hp:65,attack:130,defense:60,speed:65}},
+{id:196,name:"Espeon",type:"psychic",desc:"Unleashes psychic power from its forehead.",stats:{hp:65,attack:65,defense:60,speed:110}},
+{id:197,name:"Umbreon",type:"dark",desc:"Its rings glow when exposed to moonlight.",stats:{hp:95,attack:65,defense:110,speed:65}},
+{id:470,name:"Leafeon",type:"grass",desc:"Uses photosynthesis like a plant.",stats:{hp:65,attack:110,defense:130,speed:95}},
+{id:471,name:"Glaceon",type:"ice",desc:"Can freeze the atmosphere, creating diamond dust.",stats:{hp:65,attack:60,defense:110,speed:65}},
+{id:700,name:"Sylveon",type:"fairy",desc:"Sends a soothing aura to calm fights.",stats:{hp:95,attack:65,defense:65,speed:60}},
+{id:129,name:"Magikarp",type:"water",desc:"Famous for being unreliable.",stats:{hp:20,attack:10,defense:55,speed:80}},
+{id:130,name:"Gyarados",type:"water",desc:"Rampages until everything is destroyed.",stats:{hp:95,attack:125,defense:79,speed:81}},
+{id:147,name:"Dratini",type:"dragon",desc:"Called the Mirage Pokémon.",stats:{hp:41,attack:64,defense:45,speed:50}},
+{id:148,name:"Dragonair",type:"dragon",desc:"If its body takes on an aura, weather changes.",stats:{hp:61,attack:84,defense:65,speed:70}},
+{id:149,name:"Dragonite",type:"dragon",desc:"Guides shipwrecked crews to shore.",stats:{hp:91,attack:134,defense:95,speed:80}},
+{id:92,name:"Gastly",type:"ghost",desc:"Born from gases, its body is poisonous.",stats:{hp:30,attack:35,defense:30,speed:80}},
+{id:93,name:"Haunter",type:"ghost",desc:"Hides in the dark, waiting to take lives.",stats:{hp:45,attack:50,defense:45,speed:95}},
+{id:94,name:"Gengar",type:"ghost",desc:"Slips into shadows to steal life force.",stats:{hp:60,attack:65,defense:60,speed:110}},
+{id:150,name:"Mewtwo",type:"psychic",desc:"Created from Mew's genes. Most savage heart.",stats:{hp:106,attack:110,defense:90,speed:130}},
+{id:151,name:"Mew",type:"psychic",desc:"So rare, still considered a mirage.",stats:{hp:100,attack:100,defense:100,speed:100}},
+{id:448,name:"Lucario",type:"fighting",desc:"Senses auras of all things.",stats:{hp:70,attack:110,defense:70,speed:90}},
+{id:445,name:"Garchomp",type:"dragon",desc:"Looks like a jet when flying.",stats:{hp:108,attack:130,defense:95,speed:102}},
+{id:658,name:"Greninja",type:"water",desc:"Creates throwing stars from water.",stats:{hp:72,attack:95,defense:67,speed:122}},
+{id:778,name:"Mimikyu",type:"ghost",desc:"Hides its form beneath an old rag.",stats:{hp:55,attack:90,defense:80,speed:96}},
+{id:887,name:"Dragapult",type:"dragon",desc:"Launches Dreepy like supersonic missiles.",stats:{hp:88,attack:120,defense:75,speed:142}},
+{id:906,name:"Sprigatito",type:"grass",desc:"Fluffy fur similar to plants.",stats:{hp:40,attack:61,defense:54,speed:65}},
+{id:908,name:"Meowscarada",type:"grass",desc:"Uses reflective fur for flower bombs.",stats:{hp:76,attack:110,defense:70,speed:123}},
+{id:909,name:"Fuecoco",type:"fire",desc:"Creates fire energy from warm rocks.",stats:{hp:67,attack:45,defense:59,speed:36}},
+{id:911,name:"Skeledirge",type:"fire",desc:"Its fiery voice can inflict burns.",stats:{hp:104,attack:75,defense:100,speed:66}},
+{id:912,name:"Quaxly",type:"water",desc:"Marches in a dignified manner.",stats:{hp:55,attack:65,defense:45,speed:50}},
+{id:914,name:"Quaquaval",type:"water",desc:"A single kick can send a truck rolling.",stats:{hp:85,attack:120,defense:80,speed:85}},
+{id:143,name:"Snorlax",type:"normal",desc:"Very lazy. Just eats and sleeps.",stats:{hp:160,attack:110,defense:65,speed:30}},
+{id:384,name:"Rayquaza",type:"dragon",desc:"Lives in the ozone layer.",stats:{hp:105,attack:150,defense:90,speed:95}},
+{id:1007,name:"Koraidon",type:"fighting",desc:"Ancient legendary from Paldea.",stats:{hp:100,attack:135,defense:115,speed:135}},
+{id:1008,name:"Miraidon",type:"electric",desc:"Futuristic legendary from Paldea.",stats:{hp:100,attack:85,defense:100,speed:135}},
+];
+const E={bulbasaur:[1,2,3],charmander:[4,5,6],squirtle:[7,8,9],pikachu:[172,25,26],eevee:{b:133,e:[134,135,136,196,197,470,471,700]},magikarp:[129,130],dratini:[147,148,149],gastly:[92,93,94],sprigatito:[906,908],fuecoco:[909,911],quaxly:[912,914]};
+const T={fire:{w:['water','ground','rock']},water:{w:['electric','grass']},grass:{w:['fire','ice','flying','bug']},electric:{w:['ground']},psychic:{w:['bug','ghost','dark']},ice:{w:['fire','fighting','rock']},dragon:{w:['ice','dragon','fairy']},dark:{w:['fighting','bug','fairy']},fairy:{w:['poison','steel']},normal:{w:['fighting']},fighting:{w:['flying','psychic','fairy']},ghost:{w:['ghost','dark']}};
+let qS=0,qT=0,qStreak=0,qPoke=null;let cS=0,cB=0,cActive=false,cTimer=null;let mCards=[],mFlip=[],mM=0,mP=0;let f1=null,f2=null,fSlot=1;let bW=0,bStreak=0,bPoke=null;let sS=0,sBest=0,sActive=false,sPoke=null,sTimer=null;
+function init(){const s=document.getElementById('stars');for(let i=0;i<50;i++){const d=document.createElement('div');d.className='star';d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${Math.random()*3+1}px;height:${d.style.width};animation-delay:${Math.random()*3}s`;s.appendChild(d)}render();cB=+localStorage.getItem('cB')||0;sBest=+localStorage.getItem('sB')||0;document.getElementById('cBest').textContent=cB;document.getElementById('sBest').textContent=sBest}
+function sprite(p){return`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${typeof p==='object'?p.id:p}.png`}
+function art(p){return`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${typeof p==='object'?p.id:p}.png`}
+function go(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');if(id==='quiz'&&qT===0)startQuiz();if(id==='mem'&&mCards.length===0)startMem();if(id==='battle'&&!bPoke)startBattle()}
+function render(){const s=document.getElementById('searchIn').value.toLowerCase();document.getElementById('grid').innerHTML=P.filter(p=>p.name.toLowerCase().includes(s)).map(p=>`<div class="poke-card" onclick="detail(${p.id})"><img src="${sprite(p)}"><div class="poke-name">${p.name}</div><span class="type type-${p.type}">${p.type}</span></div>`).join('')}
+function filter(){render()}
+function detail(id){const p=P.find(x=>x.id===id);if(!p)return;document.getElementById('mImg').src=art(p);document.getElementById('mName').textContent=`#${p.id} ${p.name}`;document.getElementById('mType').innerHTML=`<span class="type type-${p.type}">${p.type}</span>`;document.getElementById('mDesc').textContent=p.desc;const c={hp:'#FF5350',attack:'#FF9F43',defense:'#3B82F6',speed:'#6BCB77'};document.getElementById('mStats').innerHTML=Object.entries(p.stats).map(([k,v])=>`<div class="stat"><div class="stat-label">${k}</div><div class="stat-val">${v}</div><div class="stat-bar"><div class="stat-fill" style="width:${Math.min(v,150)/1.5}%;background:${c[k]}"></div></div></div>`).join('');document.getElementById('modal').classList.add('active')}
+function closeModal(){document.getElementById('modal').classList.remove('active')}
+function showEvo(){const c=E[document.getElementById('evoSel').value];if(!c){document.getElementById('evoDisplay').innerHTML='';return}let h='<div class="evo-display">';if(Array.isArray(c)){c.forEach((id,i)=>{const p=P.find(x=>x.id===id);if(p){h+=`<div class="evo-poke" onclick="detail(${p.id})"><img src="${sprite(p)}"><div class="poke-name">${p.name}</div></div>`;if(i<c.length-1)h+='<span class="evo-arrow">➜</span>'}})}else{const b=P.find(x=>x.id===c.b);h+=`<div class="evo-poke" onclick="detail(${b.id})"><img src="${sprite(b)}"><div class="poke-name">${b.name}</div></div><span class="evo-arrow">➜</span><div class="evo-branch">`;c.e.forEach(id=>{const e=P.find(x=>x.id===id);if(e)h+=`<div class="evo-poke" onclick="detail(${e.id})" style="padding:4px"><img src="${sprite(e)}" style="width:55px;height:55px"><div class="poke-name" style="font-size:.65rem">${e.name}</div></div>`});h+='</div>'}document.getElementById('evoDisplay').innerHTML=h+'</div>'}
+function startQuiz(){qS=0;qT=0;qStreak=0;updQ();nextQ()}
+function updQ(){document.getElementById('qScore').textContent=qS;document.getElementById('qTotal').textContent=qT;document.getElementById('streak').textContent=qStreak>1?`🔥${qStreak}`:''}
+function nextQ(){const sh=[...P].sort(()=>Math.random()-.5);qPoke=sh[0];document.getElementById('qImg').src=sprite(qPoke);document.getElementById('qImg').classList.add('hidden');document.getElementById('qOpts').innerHTML=sh.slice(0,4).sort(()=>Math.random()-.5).map(p=>`<button class="quiz-opt" onclick="checkQ('${p.name}')">${p.name}</button>`).join('')}
+function checkQ(a){document.querySelectorAll('.quiz-opt').forEach(b=>{b.disabled=true;if(b.textContent===qPoke.name)b.classList.add('correct');else if(b.textContent===a)b.classList.add('wrong')});document.getElementById('qImg').classList.remove('hidden');if(a===qPoke.name){qS++;qStreak++;confetti();popup(qStreak>2?`🔥 ${qStreak} streak!`:'✨ Correct!')}else{qStreak=0}qT++;updQ();setTimeout(nextQ,1500)}
+function startCatch(){cS=0;document.getElementById('cScore').textContent='0';document.getElementById('cTime').textContent='30';cActive=true;document.getElementById('catchArea').querySelectorAll('.wild').forEach(p=>p.remove());for(let i=0;i<3;i++)setTimeout(spawn,i*400);let t=30;clearInterval(cTimer);cTimer=setInterval(()=>{t--;document.getElementById('cTime').textContent=t;if(t<=0){clearInterval(cTimer);cActive=false;if(cS>cB){cB=cS;document.getElementById('cBest').textContent=cB;localStorage.setItem('cB',cB);popup(`🏆 New Record: ${cS}!`)}else{popup(`⏰ Game Over! ${cS}`)}}},1000);const sp=setInterval(()=>{if(!cActive){clearInterval(sp);return}spawn()},1500)}
+function spawn(){if(!cActive)return;const a=document.getElementById('catchArea'),p=P[Math.floor(Math.random()*P.length)],r=Math.random()<.15;const i=document.createElement('img');i.className='wild'+(r?' rare':'');i.src=sprite(p);i.style.left=Math.random()*(a.offsetWidth-55)+'px';i.style.top=Math.random()*(a.offsetHeight-120)+15+'px';i.dataset.pts=r?3:1;i.onclick=e=>{e.stopPropagation();if(!cActive)return;cS+=+i.dataset.pts;document.getElementById('cScore').textContent=cS;i.style.transform='scale(0)';setTimeout(()=>i.remove(),200);if(i.dataset.pts>1)popup(`⭐ Rare! +${i.dataset.pts}`);confetti()};a.appendChild(i);const mv=setInterval(()=>{if(!cActive||!document.body.contains(i)){clearInterval(mv);return}i.style.left=Math.random()*(a.offsetWidth-55)+'px';i.style.top=Math.random()*(a.offsetHeight-120)+15+'px'},2000);setTimeout(()=>{if(document.body.contains(i))i.remove()},5500)}
+function throwBall(e){if(!cActive)return;const a=document.getElementById('catchArea'),r=a.getBoundingClientRect();const b=document.createElement('div');b.style.cssText=`position:absolute;width:28px;height:28px;background:linear-gradient(180deg,var(--red) 50%,#fff 50%);border-radius:50%;border:3px solid var(--dark);left:${e.clientX-r.left-14}px;top:${e.clientY-r.top-14}px;animation:spin .4s;pointer-events:none`;a.appendChild(b);setTimeout(()=>b.remove(),400)}
+function startMem(){const sel=[...P].sort(()=>Math.random()-.5).slice(0,8);mCards=[...sel,...sel].sort(()=>Math.random()-.5);mFlip=[];mM=0;mP=0;document.getElementById('mMoves').textContent='0';document.getElementById('mPairs').textContent='0';document.getElementById('memGrid').innerHTML=mCards.map((p,i)=>`<div class="mem-card" data-i="${i}" data-id="${p.id}" onclick="flip(this)"><span class="back">❓</span><img src="${sprite(p)}"></div>`).join('')}
+function flip(c){if(c.classList.contains('flip')||c.classList.contains('match')||mFlip.length>=2)return;c.classList.add('flip');mFlip.push(c);if(mFlip.length===2){mM++;document.getElementById('mMoves').textContent=mM;const[a,b]=mFlip;if(a.dataset.id===b.dataset.id){a.classList.add('match');b.classList.add('match');mP++;document.getElementById('mPairs').textContent=mP;mFlip=[];if(mP===8){confetti();popup(`🏆 Done in ${mM} moves!`)}}else{setTimeout(()=>{a.classList.remove('flip');b.classList.remove('flip');mFlip=[]},1000)}}}
+function pickFuse(n){fSlot=n;renderFusePicker();document.getElementById('fuseModal').classList.add('active')}
+function renderFusePicker(){const s=(document.getElementById('fuseSearch')?.value||'').toLowerCase();document.getElementById('fusePicker').innerHTML=P.filter(p=>p.name.toLowerCase().includes(s)).map(p=>`<div class="poke-card" onclick="selFuse(${p.id})"><img src="${sprite(p)}"><div class="poke-name">${p.name}</div></div>`).join('')}
+function closeFuseModal(){document.getElementById('fuseModal').classList.remove('active')}
+function selFuse(id){const p=P.find(x=>x.id===id);const sl=document.getElementById('slot'+fSlot);if(fSlot===1)f1=p;else f2=p;sl.innerHTML=`<img src="${sprite(p)}"><p style="font-size:.75rem;margin-top:3px">${p.name}</p>`;sl.classList.add('filled');closeFuseModal()}
+function randFuse(){const sh=[...P].sort(()=>Math.random()-.5);f1=sh[0];f2=sh[1];['slot1','slot2'].forEach((s,i)=>{const sl=document.getElementById(s),p=i===0?f1:f2;sl.innerHTML=`<img src="${sprite(p)}"><p style="font-size:.75rem;margin-top:3px">${p.name}</p>`;sl.classList.add('filled')});setTimeout(doFuse,300)}
+function doFuse(){if(!f1||!f2){popup('❌ Select two Pokémon!');return}if(f1.id===f2.id){popup('❌ Choose different ones!');return}const n1=f1.name,n2=f2.name;const names=[n1.slice(0,Math.ceil(n1.length/2))+n2.slice(Math.floor(n2.length/2)),n2.slice(0,3)+n1.slice(-Math.max(4,n1.length-3))];const name=names[Math.floor(Math.random()*names.length)];document.getElementById('fuseResult').innerHTML=`<div class="fuse-result"><h3>🧬 ${name}</h3><div class="ai-img"><div class="spin"></div></div><p>Creating fusion...</p></div>`;const st={hp:Math.round((f1.stats.hp+f2.stats.hp)/2*(0.9+Math.random()*.3)),attack:Math.round((f1.stats.attack+f2.stats.attack)/2*(0.9+Math.random()*.3)),defense:Math.round((f1.stats.defense+f2.stats.defense)/2*(0.9+Math.random()*.3)),speed:Math.round((f1.stats.speed+f2.stats.speed)/2*(0.9+Math.random()*.3))};const tot=Object.values(st).reduce((a,b)=>a+b,0);const stars=tot>450?'⭐⭐⭐⭐⭐':tot>380?'⭐⭐⭐⭐':tot>300?'⭐⭐⭐':tot>220?'⭐⭐':'⭐';const desc=[`A legendary fusion of ${n1} and ${n2}!`,`Scientists are baffled by this ${n1}+${n2} fusion!`,`When ${n1} meets ${n2}, this amazing creature emerges!`][Math.floor(Math.random()*3)];setTimeout(()=>{const c={hp:'#FF5350',attack:'#FF9F43',defense:'#3B82F6',speed:'#6BCB77'};document.getElementById('fuseResult').innerHTML=`<div class="fuse-result"><h3>🧬 ${name}</h3><p style="font-size:1.3rem;margin:5px 0">${stars}</p><div class="ai-img"><span class="ai-badge">🤖 AI</span><canvas id="fuseCanvas" width="200" height="200"></canvas></div><div style="margin:10px 0"><span class="type type-${f1.type}">${f1.type}</span> × <span class="type type-${f2.type}">${f2.type}</span></div><p style="font-style:italic;margin:10px 0;font-size:.9rem">${desc}</p><div class="stats">${Object.entries(st).map(([k,v])=>`<div class="stat"><div class="stat-label">${k}</div><div class="stat-val">${v}</div><div class="stat-bar"><div class="stat-fill" style="width:${Math.min(v,150)/1.5}%;background:${c[k]}"></div></div></div>`).join('')}</div><p style="margin-top:10px;color:var(--cyan)">⚡ Power: ${tot}</p></div>`;genFuseImg();confetti();popup(`✨ ${name} created!`)},1500)}
+function genFuseImg(){const cv=document.getElementById('fuseCanvas');if(!cv)return;const ctx=cv.getContext('2d');const i1=new Image(),i2=new Image();i1.crossOrigin='anonymous';i2.crossOrigin='anonymous';let ld=0;const onLd=()=>{ld++;if(ld===2){ctx.clearRect(0,0,200,200);const st=Math.floor(Math.random()*5);if(st===0){ctx.save();ctx.beginPath();ctx.rect(0,0,100,200);ctx.clip();ctx.drawImage(i1,0,0,200,200);ctx.restore();ctx.save();ctx.beginPath();ctx.rect(100,0,100,200);ctx.clip();ctx.drawImage(i2,0,0,200,200);ctx.restore()}else if(st===1){ctx.save();ctx.beginPath();ctx.rect(0,0,200,100);ctx.clip();ctx.drawImage(i1,0,0,200,200);ctx.restore();ctx.save();ctx.beginPath();ctx.rect(0,100,200,100);ctx.clip();ctx.drawImage(i2,0,0,200,200);ctx.restore()}else if(st===2){ctx.save();ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(200,0);ctx.lineTo(0,200);ctx.closePath();ctx.clip();ctx.drawImage(i1,0,0,200,200);ctx.restore();ctx.save();ctx.beginPath();ctx.moveTo(200,0);ctx.lineTo(200,200);ctx.lineTo(0,200);ctx.closePath();ctx.clip();ctx.drawImage(i2,0,0,200,200);ctx.restore()}else if(st===3){ctx.globalAlpha=1;ctx.drawImage(i1,0,0,200,200);ctx.globalAlpha=.5;ctx.drawImage(i2,0,0,200,200);ctx.globalAlpha=1}else{ctx.drawImage(i2,0,0,200,200);ctx.save();ctx.beginPath();ctx.arc(100,100,60,0,Math.PI*2);ctx.clip();ctx.drawImage(i1,0,0,200,200);ctx.restore()}}};i1.onload=onLd;i2.onload=onLd;i1.onerror=()=>{ld++;onLd()};i2.onerror=()=>{ld++;onLd()};i1.src=art(f1);i2.src=art(f2)}
+function startBattle(){const p=P[Math.floor(Math.random()*P.length)];bPoke=p;document.getElementById('battlePoke').innerHTML=`<img src="${sprite(p)}"><div class="poke-name" style="margin-top:8px;font-family:'Fredoka One',cursive">${p.name}</div><span class="type type-${p.type}">${p.type}</span>`;document.getElementById('battlePoke').classList.remove('win','lose');const weak=T[p.type]?.w||[];const all=Object.keys(T);const wrong=all.filter(t=>!weak.includes(t)).sort(()=>Math.random()-.5).slice(0,3);const opts=[...weak.slice(0,1),...wrong].sort(()=>Math.random()-.5);document.getElementById('typeBtns').innerHTML=opts.map(t=>`<button class="type-btn type-${t}" onclick="checkBattle('${t}')">${t}</button>`).join('')}
+function checkBattle(sel){const weak=T[bPoke.type]?.w||[];const ok=weak.includes(sel);const bp=document.getElementById('battlePoke');document.querySelectorAll('.type-btn').forEach(b=>b.disabled=true);if(ok){bW++;bStreak++;bp.classList.add('win');confetti();popup(bStreak>2?`🔥 ${bStreak} streak!`:'⚔️ Super Effective!')}else{bStreak=0;bp.classList.add('lose');popup(`❌ ${weak[0]||'special'} was effective!`)}document.getElementById('bWins').textContent=bW;document.getElementById('bStreak').textContent=bStreak;setTimeout(startBattle,2000)}
+function startSpeed(){sS=0;sActive=true;document.getElementById('sScore').textContent='0';document.getElementById('sInput').value='';document.getElementById('sInput').classList.remove('ok','bad');nextSpeed()}
+function nextSpeed(){if(!sActive)return;sPoke=P[Math.floor(Math.random()*P.length)];document.querySelector('#speedPoke img').src=sprite(sPoke);document.getElementById('hint').textContent=sPoke.name[0]+'_'.repeat(sPoke.name.length-1);document.getElementById('sInput').value='';document.getElementById('sInput').classList.remove('ok','bad');document.getElementById('sInput').focus();let t=100;clearInterval(sTimer);document.getElementById('sFill').style.width='100%';sTimer=setInterval(()=>{t-=2;document.getElementById('sFill').style.width=t+'%';if(t<=0){clearInterval(sTimer);document.getElementById('sInput').classList.add('bad');popup(`⏰ Time's up! It was ${sPoke.name}`);if(sS>sBest){sBest=sS;document.getElementById('sBest').textContent=sBest;localStorage.setItem('sB',sBest)}sActive=false}},100)}
+function checkSpeed(){if(!sActive||!sPoke)return;const v=document.getElementById('sInput').value.toLowerCase().trim();if(v===sPoke.name.toLowerCase()){clearInterval(sTimer);document.getElementById('sInput').classList.add('ok');sS++;document.getElementById('sScore').textContent=sS;confetti();popup(`✨ +1 - ${sPoke.name}!`);setTimeout(nextSpeed,800)}}
+function confetti(){const cols=['#FF5350','#3B82F6','#FFD93D','#6BCB77','#A855F7','#FF9F43','#00D9FF'];for(let i=0;i<20;i++){const c=document.createElement('div');c.className='confetti';c.style.cssText=`left:${Math.random()*100}vw;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.5}s;border-radius:${Math.random()>.5?'50%':'0'}`;document.body.appendChild(c);setTimeout(()=>c.remove(),2500)}}
+function popup(txt){const old=document.querySelector('.popup');if(old)old.remove();const p=document.createElement('div');p.className='popup';p.innerHTML=`🎮 ${txt}`;document.body.appendChild(p);setTimeout(()=>p.remove(),3000)}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+document.getElementById('fuseModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeFuseModal()});
+init();
+</script>
+</body>
+</html>
