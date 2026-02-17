@@ -6,13 +6,51 @@
     <title>Thank You - SweepNspect</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .thank-you-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px;
+            text-align: center;
+        }
+        .thank-you-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+        }
+        .thank-you-page h1 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .thank-you-page .message {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+            max-width: 480px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+        .thank-you-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
     <div class="thank-you-page">
-        <div class="thank-you-icon">✓</div>
-        <h1>Thank You!</h1>
-        <p>We've received your message and will be in touch soon.</p>
-        <a href="index.html" class="btn btn-primary">Back to Home</a>
+        <div class="thank-you-icon">&#10003;</div>
+        <h1>You're on the list.</h1>
+        <p class="message">
+            We'll let you know as soon as SweepNspect is available on Google Play.
+            In the meantime, take a look at what the app can do.
+        </p>
+        <div class="thank-you-actions">
+            <a href="/" class="btn btn-primary">See Features</a>
+            <a href="/#pricing" class="btn btn-outline">View Pricing</a>
+        </div>
     </div>
 </body>
 </html>

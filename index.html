@@ -24,6 +24,13 @@
     <title>SweepNspect - Professional Chimney Inspection App</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!-- Google Analytics (GA4) - replace G-XXXXXXXXXX with real ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+
+    <!-- Meta Pixel - replace PIXEL_ID with real ID -->
+    <!-- <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','PIXEL_ID');fbq('track','PageView');</script> -->
 </head>
 <body>
     <!-- Navigation -->
@@ -41,10 +48,9 @@
             <ul class="nav-menu">
                 <li><a href="#features" class="nav-link">Features</a></li>
                 <li><a href="#pricing" class="nav-link">Pricing</a></li>
-                <li><a href="#about" class="nav-link">Support</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="#features" class="btn btn-outline nav-cta">Learn More</a></li>
-                <li><a href="coming-soon.html" class="btn btn-danger nav-cta">Download</a></li>
+                <li><a href="download.html" class="btn btn-danger nav-cta">Get the App</a></li>
             </ul>
         </div>
     </nav>
@@ -59,7 +65,7 @@
                     Supports NFPA 211–style language. Android-native. Optimized for the field.
                 </p>
                 <div class="hero-buttons">
-                    <a href="coming-soon.html" class="btn btn-primary btn-lg">Get the App</a>
+                    <a href="download.html" class="btn btn-primary btn-lg">Start Free Trial</a>
                     <a href="#features" class="btn btn-outline btn-lg">See Features</a>
                 </div>
                 <div class="trust-badges">
@@ -235,11 +241,12 @@
                         <li>Data stays on your device</li>
                         <li>No credit card required</li>
                     </ul>
-                    <a href="coming-soon.html" class="btn btn-outline btn-block">Apply for Beta</a>
+                    <a href="download.html" class="btn btn-outline btn-block">Start Free Trial</a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-badge">Most Popular</div>
                     <div class="pricing-header">
-                        <h3 class="pricing-tier">Basic</h3>
+                        <h3 class="pricing-tier">Solo</h3>
                         <div class="pricing-price">
                             <span class="price-amount">$49</span>
                             <span class="price-period">/month</span>
@@ -248,15 +255,15 @@
                     <ul class="pricing-features">
                         <li>Unlimited inspections</li>
                         <li>PDF report generation</li>
+                        <li>Booking & scheduling</li>
+                        <li>Invoicing</li>
                         <li>Offline-first design</li>
                         <li>Full data ownership</li>
-                        <li>Export anytime</li>
                         <li>Email support</li>
                     </ul>
-                    <a href="coming-soon.html" class="btn btn-outline btn-block">Apply for Beta</a>
+                    <a href="download.html" class="btn btn-secondary btn-block">Start Free Trial</a>
                 </div>
-                <div class="pricing-card pricing-card-featured">
-                    <div class="pricing-badge">Business Infrastructure</div>
+                <div class="pricing-card">
                     <div class="pricing-header">
                         <h3 class="pricing-tier">Pro</h3>
                         <div class="pricing-price">
@@ -265,14 +272,14 @@
                         </div>
                     </div>
                     <ul class="pricing-features">
-                        <li>Everything in Basic</li>
+                        <li>Everything in Solo</li>
                         <li>Customer portal</li>
                         <li>Online booking calendar</li>
                         <li>Client report viewer</li>
                         <li>Analytics dashboard</li>
                         <li>Priority support</li>
                     </ul>
-                    <a href="coming-soon.html" class="btn btn-secondary btn-block">Apply for Beta</a>
+                    <span class="btn btn-outline btn-block" style="opacity:0.5;cursor:default;">Coming Soon</span>
                 </div>
             </div>
         </div>
@@ -286,7 +293,7 @@
 
             <div class="data-grid">
                 <div class="data-card">
-                    <h3>Trial & Basic</h3>
+                    <h3>Trial & Solo</h3>
                     <p>
                         Inspection data stays on your device. SweepNspect does not store,
                         analyze, or reuse your inspection content. Export anytime.
@@ -354,6 +361,10 @@
                 SweepNspect is a documentation tool for professional chimney inspectors.
                 It does not provide inspection training, safety determinations, or code compliance judgments.
             </p>
+            <div class="footer-links" style="text-align:center;margin:16px 0;">
+                <a href="privacy.html" style="color:var(--color-text-muted);margin:0 12px;font-size:0.85rem;">Privacy Policy</a>
+                <a href="mailto:support@sweepnspect.com" style="color:var(--color-text-muted);margin:0 12px;font-size:0.85rem;">support@sweepnspect.com</a>
+            </div>
             <p class="footer-text">&copy; 2026 SweepNspect. All rights reserved.</p>
         </div>
     </footer>
