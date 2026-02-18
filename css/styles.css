@@ -307,64 +307,66 @@ img {
     position: relative;
 }
 
-/* Flagship phone frame — black body, metallic collar, beveled edges */
+/* Flagship phone frame — black body, grey bevels, black collar */
 .phone-frame {
     width: 270px;
     height: 556px;
     background: linear-gradient(165deg,
-        #1c1c20 0%,
-        #101012 15%,
-        #0a0a0c 40%,
-        #080809 60%,
-        #0e0e10 85%,
-        #1a1a1e 100%);
+        #28282e 0%,
+        #1a1a1e 12%,
+        #101012 35%,
+        #0c0c0e 65%,
+        #141416 88%,
+        #222226 100%);
     border-radius: 36px;
-    padding: 4px;
+    padding: 6px;
     position: relative;
     transform: rotateY(-8deg) rotateX(3deg);
     transform-style: preserve-3d;
 
-    /* Metallic collar band — lighter top-left, darker bottom-right */
-    border: 2.5px solid;
-    border-color: #58585e #42424a #2e2e34 #42424a;
+    /* Black collar with grey highlights */
+    border: 3px solid;
+    border-color: #606068 #48484e #2a2a30 #48484e;
 
     box-shadow:
-        /* Ambient shadows for depth */
-        -18px 22px 55px rgba(0, 0, 0, 0.65),
-        0 12px 35px rgba(0, 0, 0, 0.4),
-        /* Outer metallic edge catch */
-        0 0 0 0.5px rgba(120, 120, 130, 0.25),
-        /* Top-left bevel highlight — light catching the edge */
-        inset 1px 1px 0 rgba(255, 255, 255, 0.12),
-        inset 0 1px 4px rgba(255, 255, 255, 0.06),
-        /* Bottom-right bevel shadow — edge falling away */
-        inset -1px -1px 0 rgba(0, 0, 0, 0.6),
-        inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+        /* Drop shadows */
+        -18px 22px 55px rgba(0, 0, 0, 0.7),
+        0 12px 35px rgba(0, 0, 0, 0.45),
+        /* Outer chrome edge */
+        0 0 0 1px rgba(140, 140, 150, 0.2),
+        /* Top-left bevel — bright edge catch */
+        inset 2px 2px 0 rgba(255, 255, 255, 0.15),
+        inset 0 2px 6px rgba(255, 255, 255, 0.08),
+        /* Bottom-right bevel — deep shadow */
+        inset -2px -2px 0 rgba(0, 0, 0, 0.7),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.4),
+        /* Inner glow along frame */
+        inset 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Side buttons (power + volume) */
 .phone-frame::before {
     content: '';
     position: absolute;
-    right: -4px;
+    right: -5px;
     top: 110px;
     width: 3px;
-    height: 40px;
-    background: linear-gradient(180deg, #4a4a52 0%, #38383e 50%, #4a4a52 100%);
-    border-radius: 0 2px 2px 0;
-    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.4);
+    height: 44px;
+    background: linear-gradient(180deg, #5a5a62 0%, #3c3c42 40%, #3c3c42 60%, #5a5a62 100%);
+    border-radius: 0 3px 3px 0;
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.5);
 }
 
 .phone-frame::after {
     content: '';
     position: absolute;
-    left: -4px;
+    left: -5px;
     top: 90px;
     width: 3px;
-    height: 28px;
-    background: linear-gradient(180deg, #4a4a52 0%, #38383e 50%, #4a4a52 100%);
-    border-radius: 2px 0 0 2px;
-    box-shadow: -1px 0 2px rgba(0, 0, 0, 0.4);
+    height: 30px;
+    background: linear-gradient(180deg, #5a5a62 0%, #3c3c42 40%, #3c3c42 60%, #5a5a62 100%);
+    border-radius: 3px 0 0 3px;
+    box-shadow: -1px 0 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Camera punch-hole */
@@ -374,7 +376,7 @@ img {
     background: #06060a;
     border-radius: 50%;
     position: absolute;
-    top: 14px;
+    top: 16px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -384,16 +386,14 @@ img {
         0 0 3px rgba(0, 0, 0, 0.4);
 }
 
-/* Screen area — edge-to-edge with thin bezel */
+/* Screen area */
 .phone-screen {
     width: 100%;
     height: 100%;
     background: #0a0a0e;
-    border-radius: 32px;
+    border-radius: 30px;
     overflow: hidden;
     position: relative;
-    /* Subtle inset to separate screen from bezel */
-    box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.04);
 }
 
 /* Demo screen content */
@@ -411,9 +411,6 @@ img {
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    background: #0a0a0e;
     overflow: hidden;
 }
 
@@ -424,8 +421,7 @@ img {
 .demo-screen img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 32px;
+    object-fit: fill;
 }
 
 /* Demo header */
