@@ -114,4 +114,21 @@
     if (demoScreens.length > 0) {
         setInterval(rotateDemoScreen, 3000);
     }
+
+    // Contact form — mailto (no external services)
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var name = contactForm.querySelector('[name="name"]').value;
+            var email = contactForm.querySelector('[name="email"]').value;
+            var message = contactForm.querySelector('[name="message"]').value;
+
+            var subject = encodeURIComponent('SweepNspect Contact — ' + name);
+            var body = encodeURIComponent(
+                'From: ' + name + ' (' + email + ')\n\n' + message
+            );
+            window.location.href = 'mailto:contact@sweepnspect.com?subject=' + subject + '&body=' + body;
+        });
+    }
 })();

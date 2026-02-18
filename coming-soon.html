@@ -45,12 +45,7 @@
 
         <h3>Apply for Early Access</h3>
 
-        <form class="notify-form beta-form" action="https://formsubmit.co/contact@sweepnspect.com" method="POST">
-            <input type="hidden" name="_subject" value="SweepNspect Founding Beta Application">
-            <input type="hidden" name="_next" value="https://sweepnspect.com/thank-you.html">
-            <input type="hidden" name="_captcha" value="true">
-            <input type="text" name="_honey" style="display:none">
-
+        <form class="notify-form beta-form" id="betaForm">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
             <input type="text" name="business" placeholder="Business Name (optional)">
@@ -60,6 +55,24 @@
 
             <button type="submit">Apply for Beta Access</button>
         </form>
+        <script>
+        document.getElementById('betaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var f = this;
+            var name = f.querySelector('[name="name"]').value;
+            var email = f.querySelector('[name="email"]').value;
+            var biz = f.querySelector('[name="business"]').value || 'N/A';
+            var certs = f.querySelector('[name="certifications"]').value || 'N/A';
+            var exp = f.querySelector('[name="experience"]').value || 'N/A';
+            var why = f.querySelector('[name="why"]').value || 'N/A';
+            var subject = encodeURIComponent('Beta Application — ' + name);
+            var body = encodeURIComponent(
+                'Name: ' + name + '\nEmail: ' + email + '\nBusiness: ' + biz +
+                '\nCertifications: ' + certs + '\nExperience: ' + exp + '\nWhy: ' + why
+            );
+            window.location.href = 'mailto:contact@sweepnspect.com?subject=' + subject + '&body=' + body;
+        });
+        </script>
 
         <p class="beta-note">
             Beta spots are limited. We review each application individually.

@@ -191,15 +191,21 @@
             <h2>Get notified when we launch</h2>
             <p>We'll send one email. No spam, no drip campaigns.</p>
 
-            <form class="notify-form" action="https://formsubmit.co/contact@sweepnspect.com" method="POST">
-                <input type="hidden" name="_subject" value="SweepNspect Launch Notification Signup">
-                <input type="hidden" name="_next" value="https://sweepnspect.com/thank-you.html">
-                <input type="hidden" name="_captcha" value="true">
-                <input type="text" name="_honey" style="display:none">
+            <form class="notify-form" id="notifyForm">
                 <input type="text" name="name" placeholder="Your name" required>
                 <input type="email" name="email" placeholder="Your email" required>
                 <button type="submit">Notify Me</button>
             </form>
+            <script>
+            document.getElementById('notifyForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var name = this.querySelector('[name="name"]').value;
+                var email = this.querySelector('[name="email"]').value;
+                var subject = encodeURIComponent('Launch Notification Signup — ' + name);
+                var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nPlease notify me when SweepNspect launches.');
+                window.location.href = 'mailto:contact@sweepnspect.com?subject=' + subject + '&body=' + body;
+            });
+            </script>
         </div>
 
         <a href="/" class="back-link">&larr; Back to home</a>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO -->
+    <meta name="description" content="Join the Founding 25 — get lifetime free access to SweepNspect, the chimney inspection app built by a working sweep. Limited to 25 spots.">
+    <meta name="keywords" content="chimney inspection app, NFPA 211, chimney sweep software, beta tester, founding member, SweepNspect">
+    <meta name="author" content="SweepNspect">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sweepnspect.com/founding">
+    <meta property="og:title" content="Founding 25 — SweepNspect">
+    <meta property="og:description" content="Lifetime free access to the chimney inspection app built by a working sweep. Limited to 25 spots.">
+    <meta property="og:image" content="https://sweepnspect.com/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Founding 25 — SweepNspect">
+    <meta name="twitter:description" content="Lifetime free access to the chimney inspection app built by a working sweep. Limited to 25 spots.">
+    <meta name="twitter:image" content="https://sweepnspect.com/images/og-image.png">
+
+    <title>Founding 25 — SweepNspect</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <style>
+        /* Founding page-specific styles */
+        .founding-hero {
+            padding: 10rem 0 4rem;
+            background-color: #0f172a;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            text-align: center;
+        }
+
+        .founding-hero .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .founding-hero .hero-subtitle {
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            color: #94a3b8;
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .founding-pitch {
+            padding: 3rem 0;
+            background-color: #0f172a;
+        }
+
+        .founding-pitch p {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #94a3b8;
+        }
+
+        .founding-pitch strong {
+            color: #ffffff;
+        }
+
+        .founding-perks {
+            padding: 3rem 0 4rem;
+            background-color: #1e293b;
+        }
+
+        .perks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .perk-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 1.75rem;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .perk-card:hover {
+            border-color: rgba(234, 88, 12, 0.4);
+        }
+
+        .perk-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .perk-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .perk-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.5;
+        }
+
+        .founding-ask {
+            padding: 3rem 0;
+            background-color: #0f172a;
+        }
+
+        .ask-box {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(234, 88, 12, 0.08);
+            border-left: 4px solid #ea580c;
+            border-radius: 0 8px 8px 0;
+            padding: 2rem 2.5rem;
+        }
+
+        .ask-box h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .ask-box p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+        }
+
+        .founding-form-section {
+            padding: 4rem 0;
+            background-color: #1e293b;
+        }
+
+        .founding-form {
+            max-width: 460px;
+            margin: 2rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .founding-form label {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .founding-form label span.required {
+            color: #ea580c;
+            margin-left: 2px;
+        }
+
+        .founding-form input,
+        .founding-form textarea {
+            padding: 14px 18px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .founding-form input:focus,
+        .founding-form textarea:focus {
+            outline: none;
+            border-color: #ea580c;
+        }
+
+        .founding-form input::placeholder,
+        .founding-form textarea::placeholder {
+            color: #475569;
+        }
+
+        .founding-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .founding-form button {
+            padding: 16px 32px;
+            border-radius: 8px;
+            border: none;
+            background: #ea580c;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.15s;
+            margin-top: 0.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        .founding-form button:hover {
+            background: #c2410c;
+            transform: translateY(-1px);
+        }
+
+        .founding-form button:active {
+            transform: translateY(0);
+        }
+
+        .spots-counter {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+
+        .spots-counter strong {
+            color: #ea580c;
+            font-size: 1.15rem;
+        }
+
+        .founding-thankyou {
+            display: none;
+            text-align: center;
+            max-width: 460px;
+            margin: 2rem auto 0;
+            padding: 3rem 2rem;
+            background: rgba(34, 197, 94, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .founding-thankyou .thankyou-icon {
+            width: 64px;
+            height: 64px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #ffffff;
+            margin: 0 auto 1.25rem;
+        }
+
+        .founding-thankyou h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+        }
+
+        .founding-thankyou p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .founding-footer {
+            padding: 2rem 0;
+            background-color: #0f172a;
+            border-top: 1px solid #334155;
+            text-align: center;
+        }
+
+        .founding-footer p {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .founding-hero {
+                padding: 8rem 0 3rem;
+            }
+
+            .ask-box {
+                padding: 1.5rem;
+            }
+
+            .perks-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .perks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="images/sweepnspect-logo-TransBG.png" alt="SweepNspect" class="logo-img">
+                <span class="logo-text">SweepNspect</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#features" class="nav-link">Features</a></li>
+                <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="#founding-signup" class="btn btn-danger nav-cta">Claim Your Spot</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="founding-hero">
+        <div class="container">
+            <h1 class="hero-title">The <span class="text-accent">Founding 25</span></h1>
+            <p class="hero-subtitle">Lifetime free access. Limited to 25 working sweeps.</p>
+        </div>
+    </section>
+
+    <!-- Pitch -->
+    <section class="founding-pitch">
+        <div class="container">
+            <p>
+                SweepNspect was <strong>built by a sweep with 20 years on ladders</strong> --
+                not a software company guessing at what you need.
+                Zone-by-zone documentation following NFPA 211. Works offline, because
+                half our jobs have no signal. PDF reports generated on-site, handed to the
+                homeowner before you leave. <strong>This is not a generic field service app.</strong>
+                It's the tool we wished existed every time we scribbled notes on a clipboard.
+            </p>
+        </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="founding-perks">
+        <div class="container">
+            <h2 class="section-title">What Founding Testers Get</h2>
+            <p class="section-subtitle">We're looking for 25 working sweeps to help shape the app before public launch.</p>
+            <div class="perks-grid">
+                <div class="perk-card">
+                    <div class="perk-icon">&#x267E;</div>
+                    <h3>Lifetime Free Access</h3>
+                    <p>No subscription, no annual fee, no catch. Free forever for the Founding 25.</p>
+                </div>
+                <div class="perk-card">
+                    <div class="perk-icon">&#x2B50;</div>
+                    <h3>Name in the Credits</h3>
+                    <p>Your name in the app as a founding member. You helped build this.</p>
+                </div>
+                <div class="perk-card">
+                    <div class="perk-icon">&#x260E;</div>
+                    <h3>Direct Line to the Dev</h3>
+                    <p>Feature requests go straight to the developer. No support tickets, no runaround.</p>
+                </div>
+                <div class="perk-card">
+                    <div class="perk-icon">&#x1F680;</div>
+                    <h3>First to Get New Features</h3>
+                    <p>Every update hits your device before anyone else sees it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Ask -->
+    <section class="founding-ask">
+        <div class="container">
+            <div class="ask-box">
+                <h2>What We Ask in Return</h2>
+                <p>
+                    Install the app. Use it on a real inspection. Then tell us what works
+                    and what doesn't. That's it. Your honest feedback from the field is
+                    what makes this app better for every sweep who uses it after you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign-up Form -->
+    <section class="founding-form-section" id="founding-signup">
+        <div class="container">
+            <h2 class="section-title">Claim Your Spot</h2>
+            <p class="section-subtitle">Fill out the form below. We'll reach out with install instructions.</p>
+
+            <form class="founding-form" id="foundingForm">
+
+                <label>
+                    Full Name <span class="required">*</span>
+                    <input type="text" name="name" placeholder="Your full name" required>
+                </label>
+
+                <label>
+                    Email <span class="required">*</span>
+                    <input type="email" name="email" placeholder="you@email.com" required>
+                </label>
+
+                <label>
+                    How many years sweeping? <span class="required">*</span>
+                    <input type="number" name="years_sweeping" placeholder="e.g. 8" min="0" max="99" required>
+                </label>
+
+                <label>
+                    What do you currently use for inspection documentation?
+                    <textarea name="current_tools" placeholder="Paper forms, another app, photos and notes, etc."></textarea>
+                </label>
+
+                <button type="submit">Claim Your Spot</button>
+            </form>
+
+            <div class="spots-counter">
+                <strong>21 of 25</strong> spots remaining
+            </div>
+
+            <div class="founding-thankyou" id="foundingThankyou">
+                <div class="thankyou-icon">&#x2713;</div>
+                <h3>Almost There.</h3>
+                <p>
+                    Your email client should have opened with your application.
+                    Hit send and you're in. We'll reply with install instructions
+                    within 48 hours. If your email client didn't open, send
+                    your info directly to
+                    <a href="mailto:contact@sweepnspect.com" style="color:#22c55e;">contact@sweepnspect.com</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="founding-footer">
+        <div class="container">
+            <p>SweepNspect &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // Mobile nav toggle
+        var navToggle = document.querySelector('.nav-toggle');
+        var navMenu = document.querySelector('.nav-menu');
+
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // Form submission — mailto (no external services)
+        var form = document.getElementById('foundingForm');
+        var thankyou = document.getElementById('foundingThankyou');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                var name = form.querySelector('[name="name"]').value;
+                var email = form.querySelector('[name="email"]').value;
+                var years = form.querySelector('[name="years_sweeping"]').value;
+                var tools = form.querySelector('[name="current_tools"]').value || 'Not specified';
+
+                var subject = encodeURIComponent('Founding 25 Application — ' + name);
+                var body = encodeURIComponent(
+                    'Founding 25 Application\n' +
+                    '========================\n\n' +
+                    'Name: ' + name + '\n' +
+                    'Email: ' + email + '\n' +
+                    'Years Sweeping: ' + years + '\n' +
+                    'Current Documentation: ' + tools + '\n'
+                );
+
+                window.location.href = 'mailto:contact@sweepnspect.com?subject=' + subject + '&body=' + body;
+
+                // Show thank-you after brief delay
+                setTimeout(function() {
+                    form.style.display = 'none';
+                    document.querySelector('.spots-counter').style.display = 'none';
+                    thankyou.style.display = 'block';
+                    thankyou.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
+            });
+        }
+    })();
+    </script>
+</body>
+</html>
