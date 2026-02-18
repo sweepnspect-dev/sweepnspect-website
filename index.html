@@ -22,8 +22,56 @@
     <meta name="twitter:image" content="https://sweepnspect.com/images/og-image.png">
 
     <title>SweepNspect - Professional Chimney Inspection App</title>
+    <link rel="canonical" href="https://sweepnspect.com/">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SweepNspect",
+      "operatingSystem": "Android",
+      "applicationCategory": "BusinessApplication",
+      "description": "Professional chimney inspection documentation app supporting NFPA 211-style language.",
+      "url": "https://sweepnspect.com",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Free Trial",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "14-day free trial with full functionality"
+        },
+        {
+          "@type": "Offer",
+          "name": "Solo",
+          "price": "49",
+          "priceCurrency": "USD",
+          "billingIncrement": "P1M",
+          "description": "Unlimited inspections, PDF reports, offline-first"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "149",
+          "priceCurrency": "USD",
+          "billingIncrement": "P1M",
+          "description": "Everything in Solo plus customer portal, scheduling, and analytics"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SweepNspect",
+      "url": "https://sweepnspect.com",
+      "description": "Professional chimney inspection documentation tools built by chimney professionals."
+    }
+    </script>
 
     <!-- Google Analytics (GA4) - replace G-XXXXXXXXXX with real ID -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -83,86 +131,17 @@
                         <div class="phone-notch"></div>
                         <div class="phone-screen">
                             <div class="demo-screens">
-                                <!-- Screen 1: Home Dashboard -->
                                 <div class="demo-screen active" id="screen-home">
-                                    <div class="demo-header">
-                                        <span>SweepNspect</span>
-                                    </div>
-                                    <div class="demo-label">Today's Jobs</div>
-                                    <div class="demo-card">
-                                        <div class="demo-card-title">Johnson Residence - 10:30 AM</div>
-                                        <div class="demo-card-subtitle">Level 2 Inspection</div>
-                                    </div>
-                                    <div class="demo-card">
-                                        <div class="demo-card-title">Miller Property - 1:00 PM</div>
-                                        <div class="demo-card-subtitle">Annual Cleaning</div>
-                                    </div>
-                                    <div class="demo-card">
-                                        <div class="demo-card-title">Thompson Home - 3:30 PM</div>
-                                        <div class="demo-card-subtitle">Pellet Stove</div>
-                                    </div>
-                                    <div class="demo-bottom-nav">
-                                        <span>🏠</span>
-                                        <span>👥</span>
-                                        <span>📅</span>
-                                        <span>⚙️</span>
-                                    </div>
+                                    <img src="images/ss-dashboard.png" alt="Dashboard with today's scheduled jobs and status counters">
                                 </div>
-                                <!-- Screen 2: Job Details -->
-                                <div class="demo-screen" id="screen-job">
-                                    <div class="demo-header">
-                                        <span>← Job Details</span>
-                                    </div>
-                                    <div class="demo-detail-group">
-                                        <div class="demo-detail-label">Customer</div>
-                                        <div class="demo-detail-value">Johnson Residence</div>
-                                    </div>
-                                    <div class="demo-detail-group">
-                                        <div class="demo-detail-label">Address</div>
-                                        <div class="demo-detail-value">1247 Oak Street</div>
-                                    </div>
-                                    <div class="demo-detail-group">
-                                        <div class="demo-detail-label">Service</div>
-                                        <div class="demo-detail-value">NFPA 211 Level 2 Inspection</div>
-                                    </div>
-                                    <div class="demo-btn">Start Inspection</div>
+                                <div class="demo-screen" id="screen-schedule">
+                                    <img src="images/ss-emu2-current.png" alt="Schedule view with job status and quick-action buttons">
                                 </div>
-                                <!-- Screen 3: Inspection Checklist -->
-                                <div class="demo-screen" id="screen-inspection">
-                                    <div class="demo-header">
-                                        <span>Level 2 Inspection</span>
-                                    </div>
-                                    <div class="demo-progress">
-                                        <div class="demo-progress-fill"></div>
-                                    </div>
-                                    <div class="demo-check-item demo-check-done">
-                                        <span>✓</span> Exterior Chimney Structure
-                                    </div>
-                                    <div class="demo-check-item demo-check-done">
-                                        <span>✓</span> Flashing & Crown
-                                    </div>
-                                    <div class="demo-check-item demo-check-done">
-                                        <span>✓</span> Flue Interior 📷
-                                    </div>
-                                    <div class="demo-check-item demo-check-pending">
-                                        <span>○</span> Smoke Chamber
-                                    </div>
-                                    <div class="demo-check-item demo-check-pending">
-                                        <span>○</span> Firebox & Damper
-                                    </div>
-                                    <div class="demo-btn">Next</div>
+                                <div class="demo-screen" id="screen-exterior">
+                                    <img src="images/ss-exterior.png" alt="Exterior assessment with chimney type, location, and photo capture">
                                 </div>
-                                <!-- Screen 4: Report Complete -->
-                                <div class="demo-screen" id="screen-report">
-                                    <div class="demo-success-icon">✅</div>
-                                    <div class="demo-success-title">Inspection Complete</div>
-                                    <div class="demo-success-subtitle">Report Generated</div>
-                                    <div class="demo-pdf-preview">
-                                        <div class="demo-pdf-icon">📄</div>
-                                        <div class="demo-pdf-text">Johnson_Inspection.pdf</div>
-                                    </div>
-                                    <div class="demo-btn">Send to Customer</div>
-                                    <div class="demo-btn demo-btn-outline">View Report</div>
+                                <div class="demo-screen" id="screen-checklist">
+                                    <img src="images/ss-checklist-filled.png" alt="Safety devices checklist with dynamic Yes/No questions">
                                 </div>
                             </div>
                         </div>
@@ -341,9 +320,9 @@
             <p class="section-subtitle">Questions? We'd love to hear from you.</p>
 
             <form class="contact-form" id="contactForm">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
+                <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
+                <textarea name="message" placeholder="Your Message" rows="5" required aria-label="Your Message"></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </div>
